@@ -1,0 +1,57 @@
+defmodule Solution do
+  def main do
+    coeffs = IO.gets("") |> parse_line()
+    powers = IO.gets("") |> parse_line()
+    [lower, upper] = IO.gets("") |> parse_line()
+
+    dx = 0.001
+
+    x_vals =
+      Stream.iterate(lower * 1.0, &(&1 + dx))
+      |> Enum.take_while(&(&1 <= upper + dx / 2))
+
+    # Area under the curve
+    area =
+      x_vals
+      |> Enum.map(&(f(coeffs, powers, &1)))
+      |> Enum.map(&(&1 * dx))
+      |> Enum.sum()
+
+    # Volume of revolution around x-axis
+    volume =
+      x_vals
+      |> Enum.map(&(area_circle(coeffs, powers, &1)))
+      |> Enum.map(&(&1 * dx))
+      |> Enum.sum()
+
+    IO.puts(Float.round(area, 1))
+    IO.puts(Float.round(volume, 1))
+
+    File.write!("fx.csv",
+      x_vals
+      |> Enum.map(fn x -> "#{x},#{f(coeffs, powers, x)}\n" end)
+      |> Enum.join("")
+    )
+  end
+
+  defp parse_line(line) do
+    line
+    |> String.trim()
+    |> String.split()
+    |> Enum.map(&String.to_integer/1)
+  end
+
+  defp f(coeffs, powers, x) do
+    Enum.zip(coeffs, powers)
+    |> Enum.reduce(0.0, fn {c, p}, acc ->
+      acc + c * :math.pow(x, p)
+    end)
+  end
+
+  defp area_circle(coeffs, powers, x) do
+    fx = f(coeffs, powers, x)
+    :math.pi() * fx * fx
+  end
+end
+
+Solution.main()
