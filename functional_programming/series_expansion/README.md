@@ -8,9 +8,7 @@ This challenge approximates the value of the exponential function `e^x` using th
 
 The exponential function `e^x` can be approximated using the Maclaurin (Taylor) series:
 
-\[
-e^x \approx \sum_{n=0}^{9} \frac{x^n}{n!}
-\]
+$`e^x \approx \sum_{n=0}^{9} \frac{x^n}{n!}`$
 
 This approximation is typically accurate up to 4 decimal places for small-to-moderate values of `x`.
 
