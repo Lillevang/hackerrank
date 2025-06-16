@@ -1,0 +1,25 @@
+defmodule Solution do
+    def main do
+      n = IO.gets("") |> String.trim() |> String.to_integer()
+  
+      1..n
+      |> Enum.map(fn _ ->
+        IO.gets("") |> String.trim() |> String.to_float()
+      end)
+      |> Enum.each(fn x ->
+        IO.puts(:erlang.float_to_binary(exp_series(x), decimals: 4))
+      end)
+    end
+  
+    defp exp_series(x) do
+      0..9
+      |> Enum.reduce(0.0, fn n, acc ->
+        acc + :math.pow(x, n) / factorial(n)
+      end)
+    end
+  
+    defp factorial(0), do: 1
+    defp factorial(n), do: n * factorial(n - 1)
+  end
+  
+  Solution.main()
