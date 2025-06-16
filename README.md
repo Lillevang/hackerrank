@@ -6,20 +6,13 @@ A structured collection of coding challenge solutions from [HackerRank](https://
 
 ## 📁 Directory Structure
 
-```text
-domains/
-├── java/                      # Java challenge solutions
-├── shell/                     # Shell scripting exercises
-└── functional_programming/    # Functional programming challenges
-```
-
 Each subfolder contains challenge-specific directories named after the HackerRank problem, typically including a `Solution` file and any supporting files.
 
-## 🧭 Purpose
+## Purpose
 
 This repository serves as a personal archive of completed challenges — useful for reference, retrospectives, or revisiting old problem-solving patterns.
 
-## 🧩 Notes
+## Notes
 
 - Code may reflect varying styles and experience levels over time
 - File and folder names match the original HackerRank problem titles
